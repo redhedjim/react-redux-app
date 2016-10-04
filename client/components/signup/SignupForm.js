@@ -1,4 +1,7 @@
 import React from 'react';
+import timezones from '../../data/timezones';
+import map from 'lodash/map';
+import axios from 'axios';
 
 class SignupForm extends React.Component{
 	constructor(props){
@@ -8,7 +11,7 @@ class SignupForm extends React.Component{
 			email: '',
 			password: '',
 			passwordConfirmation: '',
-			timeZone: ''
+			timezone: ''
 		}
 
 		this.onChange = this.onChange.bind(this);
@@ -21,9 +24,12 @@ class SignupForm extends React.Component{
 
 	onSubmit(e){
 		e.preventDefault();
-		console.log(this.state);
+		axios.post('/api/users', {user: this.state.username})
 	}
 	render() {
+		const options = map(timezones, (val, key) =>
+			<option key={val} value={val}>{key}</option>
+		);
 		return(
 			<form onSubmit={this.onSubmit}>
 				<h1>Join our community</h1>
@@ -68,14 +74,17 @@ class SignupForm extends React.Component{
 					/>
 				</div>
 				<div className="form-group">
-					<label className="control-label">Time zone</label>
-					<input 
-						value={this.state.timeZone}
+					<label className="control-label">Timezone</label>
+					<select 
+						value={this.state.timezone}
 						onChange={this.onChange}
 						type="text"
-						name="timeZone"
+						name="timezone"
 						className="form-control"
-					/>
+					>
+						<option value="" disabled>Choose your timezone</option>
+						{options}
+					</select>
 				</div>
 				<div className="form-group">
 					<button className="btn btn-primary btn-large">Signup</button>
