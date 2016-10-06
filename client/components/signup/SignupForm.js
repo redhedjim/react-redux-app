@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import classnames from 'classnames';
 import validateInput from '../../../server/shared/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
+// import { browserHistory } from 'react-router';
 
 class SignupForm extends React.Component{
 	constructor(props){
@@ -15,7 +16,7 @@ class SignupForm extends React.Component{
 			passwordConfirmation: '',
 			timezone: '',
 			errors: {},
-			ifLoading: false
+			isLoading: false
 		}
 
 		this.onChange = this.onChange.bind(this);
@@ -36,12 +37,15 @@ class SignupForm extends React.Component{
 
 	onSubmit(e){
 		e.preventDefault();
-
 		if(this.isValid()){
 			this.setState({ errors: {}, isLoading: true });
 			this.props.userSignupRequest(this.state).then(
-				(res) => {},
-				(err) => {console.log(err.response.data); this.setState({ errors: err.response.data, isLoading: false })}
+				(res) => {
+					this.context.router.push('/');				
+				},
+				(err) => {
+					this.setState({ errors: err, isLoading: false });
+				}
 			);
 		}
 		
@@ -113,5 +117,9 @@ class SignupForm extends React.Component{
 
 SignupForm.propTypes = {
 	userSignupRequest: React.PropTypes.func.isRequired
+}
+
+SignupForm.contextTypes = {
+	router: React.PropTypes.object.isRequired
 }
 export default SignupForm;

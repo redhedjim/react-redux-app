@@ -8,13 +8,10 @@ export default function validateInput(data){
     if(Validator.isEmpty(data.username)) {
         errors.username = 'A username is required';
     }
-    if(Validator.isEmail(data.email)) {
-        errors.email = 'A valid email is required';
-    }
     if(!Validator.isEmail(data.email)){
         errors.email = "Email is not valid";
     }
-    if(Validator.isLength(data.password, {min: 3, max: 20})) {
+    if(!Validator.isLength(data.password, {min: 3, max: 20})) {
         errors.password = 'A password is required';
     }
     if(Validator.isEmpty(data.passwordConfirmation)) {
