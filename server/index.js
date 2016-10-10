@@ -13,6 +13,7 @@ let app = express();
 
 app.use(bodyParser.json());
 app.use('/api/users', users);
+var morgan = require('morgan'); //used to see requests
 
 const compiler = webpack(webpackConfig);
 app.use(webpackMiddleware(compiler, {
