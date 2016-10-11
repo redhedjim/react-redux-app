@@ -21,6 +21,7 @@ class SignupForm extends React.Component{
 
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.checkUserExists = this.checkUserExists.bind(this);
 	}
 	
 	onChange(e){
@@ -30,9 +31,20 @@ class SignupForm extends React.Component{
 	isValid() {
 		const { errors, isValid } = validateInput(this.state);
 		if (!isValid){
+			console.log("!isValid: ", this.state)
 			this.setState({ errors });
 		}
 		return isValid;
+	}
+
+	checkUserExists(e){
+		const field = e.target.name;
+		const val = e.target.value;
+		if(val !== ''){
+			this.props.isUserExists(val).then(res => {
+
+			})
+		}
 	}
 
 	onSubmit(e){
@@ -48,6 +60,7 @@ class SignupForm extends React.Component{
 					this.context.router.push('/');				
 				},
 				(err) => {
+					console.log("onSubmit error", err)
 					this.setState({ errors: err, isLoading: false });
 				}
 			);
@@ -55,10 +68,12 @@ class SignupForm extends React.Component{
 		
 	}
 	render() {
+		
 		const { errors } = this.state;
 		const options = map(timezones, (val, key) =>
 			<option key={val} value={val}>{key}</option>
 		);
+		console.log("render errors: ", errors.username)
 		return(
 			<form onSubmit={this.onSubmit}>
 				<h1>Join our community</h1>
@@ -67,6 +82,7 @@ class SignupForm extends React.Component{
 					error={errors.username}
 					label="Username"
 					onChange={this.onChange}
+					checkUserExists={this.checkUserExists}
 					value={this.state.username}					
 					field="username"
 				/>
@@ -75,6 +91,7 @@ class SignupForm extends React.Component{
 					error={errors.email}
 					label="Email"
 					onChange={this.onChange}
+					checkUserExists={this.checkUserExists}
 					value={this.state.email}					
 					field="email"
 				/>
@@ -121,7 +138,8 @@ class SignupForm extends React.Component{
 
 SignupForm.propTypes = {
 	userSignupRequest: React.PropTypes.func.isRequired,
-	addFlashMessage: React.PropTypes.func.isRequired
+	addFlashMessage: React.PropTypes.func.isRequired,
+	isUserExists: React.PropTypes.func.isRequired
 }
 
 SignupForm.contextTypes = {
