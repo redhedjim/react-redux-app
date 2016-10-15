@@ -2,5 +2,8 @@
 {
     "emmet.syntaxProfiles": {
         "javascript": "jsx"
+    },
+    "jshint.options":{
+        "esversion": 6
     }
 }
