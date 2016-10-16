@@ -6,7 +6,7 @@ import Config from '../../config';
 import User from '../models/user';
 
 let crypto = require('crypto');	
-console.log(Config.algorithm);
+
 //Encrypt user password function
 let encrypt = (password) =>{
 	var cipher = crypto.createCipher(Config.algorithm, password);
