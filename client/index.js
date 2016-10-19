@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducers';
-
+import setAuthorizationToken from './utils/setAuthorizationToken';
 import routes from './routes';
 
 const store = createStore(
@@ -15,6 +15,8 @@ const store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f    
     )  
 );
+
+setAuthorizationToken(localStorage.jwtToken);
 
 render(
     <Provider store={store}>

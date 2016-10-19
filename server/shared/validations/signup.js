@@ -18,7 +18,7 @@ export default function validateInput(data){
         errors.passwordConfirmation = 'You must confirm your password';
     }
     if(!Validator.equals(data.password, data.passwordConfirmation)) {
-        errors.passwordConfirmation = "Passwords must match"
+        errors.passwordConfirmation = "Passwords must match";
     }
     if(Validator.isEmpty(data.timezone)) {
         errors.timezone = 'Timezone is required';
