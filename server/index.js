@@ -5,6 +5,7 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
+import Config from '../config';
 
 import users from './routes/user';
 import auth from './routes/auth';
@@ -29,4 +30,4 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.listen(3000, () => console.log('running on localhost:3000'));
+app.listen(Config.port, () => console.log('running on localhost: '+Config.port));

@@ -49,11 +49,11 @@ class SignupForm extends React.Component {
 			let errors = this.state.errors;
 			let invalid;
 			if (res.data.user) {
-			errors[field] = 'There is user with such ' + field;
-			invalid = true;
+        errors[field] = 'There is user with such ' + field;
+        invalid = true;
 			} else {
-			errors[field] = '';
-			invalid = false;
+        errors[field] = '';
+        invalid = false;
 			}
 			this.setState({ errors, invalid });
       },

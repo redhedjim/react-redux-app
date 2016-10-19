@@ -1,2 +1,5 @@
+config.js
+knexfile.js
 .DS_STORE
-node_modules
+.vscode
+node_modules/
