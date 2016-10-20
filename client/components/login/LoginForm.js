@@ -7,6 +7,7 @@ import { login } from '../../actions/authActions';
 class LoginForm extends React.Component {
     constructor(props){
         super(props);
+        console.log(this)
         this.state = {
             identifier: '',
             password: '',
@@ -33,9 +34,7 @@ class LoginForm extends React.Component {
             this.setState({ erors: {}, isLoading: true });
             this.props.login(this.state).then(
                 (res) => this.context.router.push('/'),
-                (err) => { console.log(err);
-                
-                    this.setState({errors: err.response.data.errors, isLoading: false })}
+                (err) => this.setState({errors: err.response.data.errors, isLoading: false })
             );
         }
     }
