@@ -24,10 +24,10 @@ export default (req, res, next) => {
                         res.status(400).json({ 
                             error: "The user this token belongs to does not exist. Please login again"
                         });
+                    } else {
+                        req.currentUser = user;
+                        next();
                     }
-
-                    req.currentUser = user;
-                    next();
                 });
             }
         });
