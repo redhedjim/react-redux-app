@@ -1,8 +1,7 @@
 import express from 'express';
 import commonValidations from '../shared/validations/signup';
-// import bcrypt from 'bcrypt';
 import isEmpty from 'lodash/isEmpty';
-import Config from '../../config';
+import Config from '../config';
 import User from '../models/user';
 
 let crypto = require('crypto');	

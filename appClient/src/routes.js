@@ -7,7 +7,7 @@ import LoginPage from './components/login/LoginPage';
 import NewEventPage from './components/events/NewEventPage';
 
 import requireAuth from './utils/requireAuth';
-
+console.log("routes on client hit")
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={Greetings} />

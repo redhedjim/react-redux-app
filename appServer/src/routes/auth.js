@@ -1,6 +1,6 @@
 import express from 'express';
 import User from '../models/user';
-import Config from '../../config';
+import Config from '../config';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 
