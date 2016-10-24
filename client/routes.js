@@ -4,6 +4,7 @@ import App from './components/App';
 import Greetings from './components/Greetings';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
+import UsersPage from './components/users/UsersPage';
 import NewEventPage from './components/events/NewEventPage';
 
 import requireAuth from './utils/requireAuth';
@@ -13,6 +14,7 @@ export default (
         <IndexRoute component={Greetings} />
         <Route path="signup" component={SignupPage} />
         <Route path="login" component={LoginPage} />
+        <Route path="users" component={UsersPage} />
         <Route path="new-event" component={ requireAuth(NewEventPage) } />
     </Route>
 )

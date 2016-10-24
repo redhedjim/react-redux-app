@@ -10,6 +10,7 @@ import Config from '../config';
 import users from './routes/user';
 import auth from './routes/auth';
 import events from './routes/events';
+import getUsers from './routes/getUsers';
 
 
 let app = express();
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/events', events);
+app.use('/api/getUsers', getUsers);
 
 var morgan = require('morgan'); //used to see requests
 
