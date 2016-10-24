@@ -7,6 +7,7 @@ import { login } from '../../actions/authActions';
 class LoginForm extends React.Component {
     constructor(props){
         super(props);
+        console.log(this)
         this.state = {
             identifier: '',
             password: '',
