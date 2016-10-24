@@ -9,13 +9,17 @@ import Config from '../config';
 
 import users from './routes/user';
 import auth from './routes/auth';
+import events from './routes/events';
+
 
 let app = express();
 
-
 app.use(bodyParser.json());
+
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/events', events);
+
 var morgan = require('morgan'); //used to see requests
 
 const compiler = webpack(webpackConfig);
