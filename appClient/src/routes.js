@@ -5,14 +5,15 @@ import Greetings from './components/Greetings';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
 import NewEventPage from './components/events/NewEventPage';
-
+import ClinicsPage from './components/clinics/ClinicsPage';
 import requireAuth from './utils/requireAuth';
-console.log("routes on client hit")
+
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={Greetings} />
         <Route path="signup" component={SignupPage} />
         <Route path="login" component={LoginPage} />
         <Route path="new-event" component={ requireAuth(NewEventPage) } />
+        <Route path="clinics" component={ requireAuth(ClinicsPage) } />
     </Route>
 )
