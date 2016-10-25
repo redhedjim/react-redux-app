@@ -1,0 +1,32 @@
+
+exports.up = function(knex, Promise) {
+  return Promise.all([
+     knex.schema.createTable('users', function(table){
+      table.increments();
+      table.string('user');
+      table.string('pwd_hash');
+      table.string('name');
+      table.string('phone_number');
+      table.string('receiving_email');
+      table.string('time_zone');
+      table.string('account_status');
+      table.string('account_type');
+      table.timestamps();
+    }),
+
+     knex.schema.createTable('contacts', function(table){
+      table.increments();
+      table.integer('user_id').unsigned().references('id').inTable('users');
+      table.string('contact_name');
+      table.string('phone_number');
+      table.timestamps();
+    })
+  ])
+};
+
+exports.down = function(knex, Promise) {
+  return Promise.all([
+    knex.schema.dropTable('contacts'),
+    knex.schema.dropTable('users')
+  ])
+};

@@ -7,7 +7,7 @@ module.exports = {
       host: '127.0.0.1',
       user: 'root',
       password: '1q2w3e4r',
-      database: 'react'
+      database: 'faxer2'
     },
     pool: {
       min: 2,
@@ -24,7 +24,7 @@ module.exports = {
       host: '127.0.0.1',
       user: 'root',
       password: '1q2w3e4r',
-      database: 'react'
+      database: 'faxer2'
     },
     pool: {
       min: 2,
