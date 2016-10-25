@@ -27,7 +27,7 @@ class ContactList extends React.Component {
         const { title, errors, isLoading } = this.state;
 
         return (
-            <div>{contacts}</div>
+            <div>Contacts</div>
         );
     }
 }
