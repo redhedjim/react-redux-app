@@ -28,3 +28,9 @@ export function login(data) {
     });
   };
 }
+
+export function username(data) {
+  return dispatch => {
+    return axios.post('/api/auth', data)
+  };
+}

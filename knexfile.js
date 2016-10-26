@@ -6,7 +6,7 @@ module.exports = {
      connection: {
       host: '127.0.0.1',
       user: 'root',
-      password: '1q2w3e4r',
+      password: '',
       database: 'react'
     },
     pool: {
@@ -23,7 +23,7 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       user: 'root',
-      password: '1q2w3e4r',
+      password: '',
       database: 'react'
     },
     pool: {
@@ -40,7 +40,7 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       user: 'root',
-      password: '1q2w3e4r',
+      password: '',
       database: 'react'
     },
     pool: {
