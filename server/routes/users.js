@@ -6,8 +6,10 @@ let router = express.Router();
 export default router;
 
 router.route('/').get(function(req,res){
-    var messages = [];
-    User.forge().fetchAll().then(function(users){
+    let messages = [];
+    User.forge().query({
+        select: [ 'username', 'email' ]
+    }).fetchAll().then(function(users){
     console.log("get all users");
         if(users){
         console.log('getting all users');
@@ -27,7 +29,7 @@ router.route('/').get(function(req,res){
             });
         } 
     }).catch(function(err){
-        messages.push("There was an error saving this record. Please try again");
+        messages.push("There was an error getting the records. Please try again");
         messages.push(err.message);
             res.status(400).json({
                 error: true,
@@ -37,8 +39,7 @@ router.route('/').get(function(req,res){
     });
 });
 // .post(function(req,res){
-//     var User = require('../models/user');
-//     var messages = [];
+//     let messages = [];
 //     User.forge({email: req.body.email}).fetch().then(function(model){
 //         if(model){
 //             messages.push("This email is already taken.  Try logging in.");
@@ -50,10 +51,8 @@ router.route('/').get(function(req,res){
 //         }
 //         else{
 //             User.forge().save({
-//                 // first: req.body.first,
-//                 // last: req.body.last,
-//                 // email: req.body.email,
-//                 // admin: req.body.admin
+//                 username: req.body.username,
+//                 email: req.body.email,
 //             }).then(function(model){
 //                 messages.push("User has been created successfully");
 //                 res.status(201).send({

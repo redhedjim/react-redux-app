@@ -2,12 +2,13 @@ import axios from 'axios';
 
 export const getAllUsers = (options) => {
     return dispatch => {
-        return axios.get('/api/getUsers', options)
+        return axios.get('/api/users', options)
     };
 }
 
-export const createAUser = () => {
+export const createUser = (options) => {
     return dispatch => {
-        return axios.post('/api/users', options)
+        return axios.post('/api/signup', options);
+        // return axios.get('/api/users', options);
     };
 }
