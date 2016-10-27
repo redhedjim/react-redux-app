@@ -7,10 +7,12 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 import Config from '../config';
 
+
 import signup from './routes/signup';
+import users from './routes/users';
 import auth from './routes/auth';
 import events from './routes/events';
-import users from './routes/users';
+
 
 
 let app = express();
@@ -18,9 +20,11 @@ let app = express();
 app.use(bodyParser.json());
 
 app.use('/api/signup', signup);
+app.use('/api/users', users);
+app.use('/api/users/:id', users);
 app.use('/api/auth', auth);
 app.use('/api/events', events);
-app.use('/api/users', users);
+
 
 var morgan = require('morgan'); //used to see requests
 

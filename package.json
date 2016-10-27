@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "axios": "^0.14.0",
-    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.2",
     "classnames": "^2.2.5",

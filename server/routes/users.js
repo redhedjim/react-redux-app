@@ -38,6 +38,44 @@ router.route('/').get(function(req,res){
             });
     });
 });
+
+router.get('/:id', (req, res) => {
+  if(isNaN(req.params.id)) {
+    User.query({
+      select: [ 'username', 'email' ],
+      where: { email: req.params.id },
+      orWhere: { username: req.params.id }
+    }).fetch().then(user => {
+      res.json({ user });
+    });
+  } else {
+      User.query({
+      select: [ 'id', 'username', 'email' ],
+      where: { id: req.params.id }
+    }).fetch().then(user => {
+      console.log(user),
+      res.json({ user });
+    });
+  }
+});
+
+router.patch('/:id', (req, res) => {
+  User.forge({id: req.params.id}).save({
+    username: req.body.username,
+    email: req.body.email
+  },{patch:true}).then(user => {
+    res.json({ user });
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  User.forge({id: req.params.id}).destroy().then(user => {
+    res.json({ user });
+  }, err => { 
+    console.log("Could not delete user") 
+  });
+});
+
 // .post(function(req,res){
 //     let messages = [];
 //     User.forge({email: req.body.email}).fetch().then(function(model){
@@ -177,3 +215,5 @@ router.route('/').get(function(req,res){
 //                 });
 //         });
 //     }
+
+
