@@ -61,6 +61,23 @@ router.get('/:id', (req, res) => {
   }
 });
 
+router.patch('/:id', (req, res) => {
+  User.forge({id: req.params.id}).save({
+    username: req.body.username,
+    email: req.body.email
+  },{patch:true}).then(user => {
+    res.json({ user });
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  User.forge({id: req.params.id}).destroy().then(user => {
+    res.json({ user });
+  }, err => { 
+    console.log("Could not delete user") 
+  });
+});
+
 router.get('/', (req, res) => {
   User.query({
     select: [ 'id', 'username', 'email' ]

@@ -6,6 +6,16 @@ import { getUser, updateUser, deleteUser } from '../../actions/userActions';
 import { username } from '../../actions/authActions';
 import map from 'lodash/map';
 
+let buttonAction;
+
+function buttonActionUpdate() {
+    buttonAction = "update";
+}
+
+function buttonActionDelete() {
+    buttonAction = "delete";
+}
+
 class UserForm extends React.Component {
     constructor(props){
         super(props);
@@ -47,14 +57,22 @@ class UserForm extends React.Component {
     }
 
     onSubmit(e) {
-        e.preventDefault();
-        if (this.isValid()) {
+         e.preventDefault();
+         console.log(buttonAction);
+        // if (this.isValid()) {
             this.setState({ errors: {}, isLoading: true });
-            this.props.login(this.state).then(
-                (res) => this.context.router.push('/'),
-                (err) => this.setState({errors: err.response.data.errors, isLoading: false })
-            );
-        }
+            if (buttonAction === "update") {
+                this.props.updateUser(this.state.id, this.state).then(
+                    (res) => this.context.router.push(`/user/${ this.state.id }`),
+                    (err) => this.setState({errors: err.response.data.errors, isLoading: false })
+                );
+            } else if (buttonAction === "delete") {
+                this.props.deleteUser(this.state.id, this.state).then(
+                    (res) => this.context.router.push('/user'),
+                    (err) => this.setState({errors: err.response.data.errors, isLoading: false })
+                );
+            }
+        // }
     }
 
     onChange(e) {
@@ -91,8 +109,8 @@ class UserForm extends React.Component {
                     onChange={this.onChange}
                 />
                 <div className="form-group">
-                    <button className="btn btn-primary btn-lg" disabled={isLoading}>Update</button>
-                    <button className="btn btn-primary btn-lg" disabled= {isLoading}>Delete User</button>
+                    <button className="btn btn-primary btn-lg" id="update" onClick={buttonActionUpdate}>Update</button>
+                    <button className="btn btn-primary btn-lg" id="delete" onClick={buttonActionDelete}>Delete User</button>
                 </div>
             </form>
         );

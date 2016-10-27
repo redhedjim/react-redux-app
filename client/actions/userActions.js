@@ -12,14 +12,14 @@ export function getUser(id = '', options = '') {
   };
 }
 
-export function updateUser(options) {
+export function updateUser(id, userData) {
   return dispatch => {
-    return axios.post('/api/users', options);
+    return axios.patch(`/api/users/${ id }`, userData);
   };
 }
 
-export function deleteUser(options) {
+export function deleteUser(id, userData) {
   return dispatch => {
-    return axios.post('/api/users', options);
+    return axios.delete(`/api/users/${ id }`, userData);
   };
 }
