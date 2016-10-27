@@ -51,7 +51,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-
 router.post('/', (req, res) => {
   validateInput(req.body, commonValidations).then(({ errors, isValid }) => {
     if (isValid) {
@@ -68,7 +67,6 @@ router.post('/', (req, res) => {
       res.status(400).json(errors);
     }
   });
-
 });
 
 export default router;

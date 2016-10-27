@@ -8,7 +8,7 @@ export default router;
 router.route('/').get(function(req,res){
     let messages = [];
     User.forge().query({
-        select: [ 'username', 'email' ]
+        select: [ 'username', 'email', 'timezone' ]
     }).fetchAll().then(function(users){
     console.log("get all users");
         if(users){
