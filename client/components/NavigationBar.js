@@ -30,7 +30,7 @@ class NavigationBar extends React.Component {
 				<div className="container-fluid">
 					<div className="navbar-header">
 						<Link to="/" className="navbar-brand">Fancy page</Link>
-						<Link to="contacts/jim" className="navbar-brand">Contacts</Link>
+						<Link to="contacts" className="navbar-brand">Contacts</Link>
 					</div>
 							
 					<div className="collapse navbar-collapse">

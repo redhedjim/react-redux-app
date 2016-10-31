@@ -45,7 +45,6 @@ class SignupForm extends React.Component {
       this.props.isUserExists(val).then(
 		  
 		  res => {
-			console.log(res.data.user);
 			let errors = this.state.errors;
 			let invalid;
 			if (res.data.user) {

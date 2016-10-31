@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getContacts } from '../../actions/contactActions';
+import { getAllContacts } from '../../actions/contactActions';
+import map from 'lodash/map';
+import TableList from '../common/TableList';
 
 class ContactList extends React.Component {
     constructor(props) {
@@ -10,30 +12,34 @@ class ContactList extends React.Component {
             errors: {},
             isLoading: false
         };
-
-        this.onSubmit = this.onSubmit.bind(this);
-    }
-
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-        this.props.getContacts(this.state);
+        this.props.getAllContacts().then(
+            (res) => {
+                this.setState({ contacts: res.data.contacts });
+            },
+            (err) => this.setState({ errors: err })
+        )
     }
 
     render() {
-        const { title, errors, isLoading } = this.state;
-
+        const { errors, isLoading, contacts } = this.state;     
         return (
-            <div>Contacts</div>
+            <div>
+                <h1>Contacts</h1>
+                {contacts.length ? <TableList collection={contacts} /> : <h3>There are no contacts yet.</h3> }
+            </div>
         );
     }
 }
 
-ContactList.propTypes = {
-    getContacts: React.PropTypes.func.isRequired
+function mapStateToProps(state){
+    return {
+        contacts: state.contacts
+    }
 }
 
-export default connect(null, { getContacts })(ContactList);
+ContactList.propTypes = {
+    getAllContacts: React.PropTypes.func.isRequired,
+    contacts: React.PropTypes.array
+}
+
+export default connect(mapStateToProps, { getAllContacts })(ContactList);

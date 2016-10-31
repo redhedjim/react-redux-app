@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export function getContacts(options) {
+export function getAllContacts(options) {
   return dispatch => {
     return axios.get('/api/contacts', options);
   };
 }
 
-export function getSingleContact(id) {
+export function getContact(id) {
   return dispatch => {
-    return axios.post('/api/contacts/:id', id);
+    return axios.get('/api/contacts/'+ id);
   };
 }

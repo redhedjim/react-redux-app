@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/events', events);
-// app.use('/api/contacts', contacts);
+app.use('/api/contacts', contacts);
 app.use('/api/contacts/:id', contacts);
 
 var morgan = require('morgan'); //used to see requests

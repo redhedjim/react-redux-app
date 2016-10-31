@@ -16,7 +16,6 @@ export default (
         <Route path="login" component={LoginPage} />
         <Route path="new-event" component={ requireAuth(NewEventPage) } />
         <Route path="contacts" component={ requireAuth(ContactsPage) } />
-        <Route path="contacts/jim" component={ requireAuth(SingleContactPage) } />         
-       
+        <Route path="contacts/:id" component={ requireAuth(SingleContactPage) } />         
     </Route>
 )
